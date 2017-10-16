@@ -6,3 +6,19 @@
 /yarn-error.log
 
 /coverage
+
+# Ignored structure at gh-pages branch
+/__mocks__
+/__tests__
+/config
+demo-app/*
+!demo-app/assets/
+/src
+
+.babelrc
+.codeclimate.json
+.eslintrc.json
+.stylelintrc.json
+package-lock.json
+package.json
+yarn.lock
