@@ -132,7 +132,10 @@ var MarkerClusterGroup = function (_LayerGroup) {
       var _props2 = this.props,
           markerOptions = _props2.markerOptions,
           wrapperOptions = _props2.wrapperOptions,
-          children = _props2.children;
+          children = _props2.children,
+          onMarkerDrag = _props2.onMarkerDrag,
+          onMarkerDragstart = _props2.onMarkerDragstart,
+          onMarkerDragend = _props2.onMarkerDragend;
 
 
       var markersOptions = markerOptions ? Object.assign({}, markerOptions) : {};
@@ -146,7 +149,9 @@ var MarkerClusterGroup = function (_LayerGroup) {
         var currentMarkerOptions = marker.options ? Object.assign({}, marker.options) : null;
 
         var leafletMarker = _leaflet2.default.marker(marker.position || [marker.lat, marker.lng], currentMarkerOptions || markersOptions);
-
+        leafletMarker.on('drag', onMarkerDrag);
+        leafletMarker.on('dragend', onMarkerDragend);
+        leafletMarker.on('dragstart', onMarkerDragstart);
         if (marker.popup) leafletMarker.bindPopup(marker.popup);
         if (marker.tooltip) leafletMarker.bindTooltip(marker.tooltip);
 
@@ -247,7 +252,10 @@ MarkerClusterGroup.propTypes = {
   // Events
   onMarkerClick: _propTypes2.default.func,
   onClusterClick: _propTypes2.default.func,
-  onPopupClose: _propTypes2.default.func
+  onPopupClose: _propTypes2.default.func,
+  onMarkerDrag: _propTypes2.default.func,
+  onMarkerDragstart: _propTypes2.default.func,
+  onMarkerDragend: _propTypes2.default.func
 };
 
 MarkerClusterGroup.defaultProps = {

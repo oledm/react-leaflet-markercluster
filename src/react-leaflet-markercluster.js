@@ -88,7 +88,14 @@ export default class MarkerClusterGroup extends LayerGroup {
   }
 
   addLayersWithMarkersFromProps(markers) {
-    const { markerOptions, wrapperOptions, children } = this.props;
+    const {
+      markerOptions,
+      wrapperOptions,
+      children,
+      onMarkerDrag,
+      onMarkerDragstart,
+      onMarkerDragend,
+    } = this.props;
 
     const markersOptions = markerOptions
       ? Object.assign({}, markerOptions)
@@ -110,7 +117,9 @@ export default class MarkerClusterGroup extends LayerGroup {
         marker.position || [marker.lat, marker.lng],
         currentMarkerOptions || markersOptions,
       );
-
+      leafletMarker.on('drag', onMarkerDrag);
+      leafletMarker.on('dragend', onMarkerDragend);
+      leafletMarker.on('dragstart', onMarkerDragstart);
       if (marker.popup) leafletMarker.bindPopup(marker.popup);
       if (marker.tooltip) leafletMarker.bindTooltip(marker.tooltip);
 
@@ -202,6 +211,9 @@ MarkerClusterGroup.propTypes = {
   onMarkerClick: PropTypes.func,
   onClusterClick: PropTypes.func,
   onPopupClose: PropTypes.func,
+  onMarkerDrag: PropTypes.func,
+  onMarkerDragstart: PropTypes.func,
+  onMarkerDragend: PropTypes.func,
 };
 
 MarkerClusterGroup.defaultProps = {

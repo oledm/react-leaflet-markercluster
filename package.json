@@ -15,7 +15,7 @@
   },
   "pre-commit": "lint:staged",
   "lint-staged": {
-    "*.js": "lint:js",
+    "src/*.js": "lint:js",
     "*.scss": "stylelint --syntax=scss"
   },
   "jest": {
