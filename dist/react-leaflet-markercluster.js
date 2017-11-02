@@ -58,6 +58,8 @@ function removeMarkersWithSameCoordinates(markers) {
   return filteredMarkers;
 }
 
+function noop() {}
+
 var MarkerClusterGroup = function (_LayerGroup) {
   _inherits(MarkerClusterGroup, _LayerGroup);
 
@@ -259,5 +261,8 @@ MarkerClusterGroup.propTypes = {
 };
 
 MarkerClusterGroup.defaultProps = {
-  markers: []
+  markers: [],
+  onMarkerDrag: noop,
+  onMarkerDragstart: noop,
+  onMarkerDragend: noop
 };

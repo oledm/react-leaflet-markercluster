@@ -32,6 +32,8 @@ function removeMarkersWithSameCoordinates(markers) {
   return filteredMarkers;
 }
 
+function noop() {}
+
 export default class MarkerClusterGroup extends LayerGroup {
   componentWillMount() {
     const { markers, options } = this.props;
@@ -218,4 +220,7 @@ MarkerClusterGroup.propTypes = {
 
 MarkerClusterGroup.defaultProps = {
   markers: [],
+  onMarkerDrag: noop,
+  onMarkerDragstart: noop,
+  onMarkerDragend: noop,
 };
